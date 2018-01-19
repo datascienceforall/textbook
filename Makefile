@@ -3,7 +3,7 @@
 BLUE=\033[0;34m
 NOCOLOR=\033[0m
 
-BOOK_URL=https://ds8.gitbooks.io/textbook/content/
+BOOK_URL=https://www.cs.cornell.edu/courses/cs1380/2018sp/textbook/
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
@@ -11,7 +11,7 @@ help:
 	@echo "  notebooks     to convert the notebooks to HTML for embedding."
 	@echo "  build         to build locally."
 	@echo "  serve         to serve locally."
-	@echo "  deploy        to deploy the book to Gitbooks."
+	@echo "  deploy        to deploy the book to the course website."
 
 install:
 	gitbook install
@@ -32,20 +32,9 @@ build: notebooks
 serve: notebooks
 	gitbook serve
 
-deploy:
-ifneq ($(shell git for-each-ref --format='%(upstream:short)' $(shell git symbolic-ref -q HEAD)),origin/gh-pages)
-	@echo "Please check out the deployment branch, gh-pages, if you want to deploy your revisions."
-	@echo "You might also need to bring the deployment branch up to date by merging it with the staging branch."
-	@echo "For example: 'git checkout gh-pages && git pull && git merge staging && make deploy'"
-	@echo "(Current branch: $(shell git for-each-ref --format='%(upstream:short)' $(shell git symbolic-ref -q HEAD)))"
-	exit 1
-endif
-	git pull
-	make notebooks
-	git add -A
-	git commit -m "Build notebooks"
-	@echo "${BLUE}Deploying book to Gitbook.${NOCOLOR}"
-	@echo "${BLUE}=========================${NOCOLOR}"
-	git push origin gh-pages
+deploy: notebooks
+	@echo "${BLUE}Deploying book to course website.${NOCOLOR}"
+	@echo "${BLUE}=================================${NOCOLOR}"
+	./deploy.sh
 	@echo ""
 	@echo "${BLUE}    Done, see book at ${BOOK_URL}.${NOCOLOR}"
