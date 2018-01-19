@@ -7,10 +7,14 @@ BOOK_URL=https://ds8.gitbooks.io/textbook/content/
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
+	@echo "  install       to install the plugins needed to build the book."
 	@echo "  notebooks     to convert the notebooks to HTML for embedding."
 	@echo "  build         to build locally."
 	@echo "  serve         to serve locally."
 	@echo "  deploy        to deploy the book to Gitbooks."
+
+install:
+	gitbook install
 
 notebooks:
 	@echo "${BLUE}Converting notebooks to HTML.${NOCOLOR}"
