@@ -108,12 +108,21 @@ def convert_notebooks_to_html_partial(notebook_paths):
                        [filename]
         paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
 
+# MRC 01/19/2018: commented out the code below to hide the interact buttons
+# from the generated HTML.  Vocareum currently does not support producing
+# URLs with a standard base (i.e., INTERACT_LINK), so for now, we're
+# better off just hiding these and linking directly from our website.
+#
+#         with_wrapper = """<div id="ipython-notebook">
+#             <a class="interact-button" href="{interact_link}">Interact</a>
+#             {html}
+#         </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
+#                          html=html)
+# MRC: replacing the above with this simpler code:
         with_wrapper = """<div id="ipython-notebook">
-            <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
-        </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
-                         html=html)
-
+        </div>""".format(html=html)
+		
         # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
 
