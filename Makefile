@@ -32,7 +32,9 @@ build: notebooks
 serve: notebooks
 	gitbook serve
 
-deploy: notebooks
+deploy:
+	@echo "${BLUE}REMINDER: always 'make build' or 'make serve' before deploying.${NOCOLOR}"
+	@echo ""
 	@echo "${BLUE}Deploying book to course website.${NOCOLOR}"
 	@echo "${BLUE}=================================${NOCOLOR}"
 	./deploy.sh
