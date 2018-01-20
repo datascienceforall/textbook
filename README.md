@@ -18,12 +18,19 @@ The Foundations of Data Science
 
 Contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Milner
 
-This is the textbook for the [Foundations of Data Science class at UC Berkeley][data8].
-
-[View this textbook online on Gitbooks.][gitbook]
-
-[data8]: http://data8.org/
-[gitbook]: https://ds8.gitbooks.io/textbook/content/
-
 The contents of this book are licensed for free consumption under the following license:  
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+Cornell Edition
+---------------
+
+This book has been adapted for use at Cornell University 
+by [Michael Clarkson](https://www.cs.cornell.edu/~clarkson/)
+and [Madeleine Udell](https://people.orie.cornell.edu/mru8/)
+with the permission of the original authors.
+
+The original authors' edition of the book, which is used at 
+the University of California, Berkeley, can be found on 
+[Gitbooks][gitbook].
+
+[gitbook]: https://ds8.gitbooks.io/textbook/content/
