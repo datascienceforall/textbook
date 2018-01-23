@@ -46,8 +46,7 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-#INTERACT_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
-INTERACT_LINK = 'https://labs.vocareum.com/main/main.php?m=editor&nav=1&asnid=22925&stepid=22926'
+INTERACT_LINK = 'https://labs.vocareum.com/main/main.php?m=editor&nav=1&asnid=22925&stepid=22926&{paths}'
 
 # The prefix for each notebook + its dependencies
 PATH_PREFIX = 'path=notebooks/{}'
@@ -101,30 +100,23 @@ def convert_notebooks_to_html_partial(notebook_paths):
 
         html = preamble + _extract_cells(raw_html)
 
+# MRC 1/24/18:  We don't want to include dependencies as part of the URL when we link
+# into Vocareum, so I'm commenting out the next block of code.
         # Get dependencies from notebook
-        matches = list(DATASET_REGEX.finditer(
-            '\n'.join([cell['source'] for cell in notebook.cells])
-        ))
-        dependencies = [match.group('dataset') for match in matches] + \
-                       [filename]
-        paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
+#         matches = list(DATASET_REGEX.finditer(
+#             '\n'.join([cell['source'] for cell in notebook.cells])
+#         ))
+#         dependencies = [match.group('dataset') for match in matches] + \
+#                        [filename]
+#        paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
+        paths = '&notebook=' + filename  #MRC: simplified from above for Vocareum 
 
-# MRC 01/23/2018: Vocareum currently does not support producing a per-notebook
-# URLs with a standard base (i.e., INTERACT_LINK), so for now, we're
-# linking to a single URL for all notebooks
-#
-#         with_wrapper = """<div id="ipython-notebook">
-#             <a class="interact-button" href="{interact_link}">Interact</a>
-#             {html}
-#         </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
-#                          html=html)
-# MRC: replacing the above with this simpler code:
         with_wrapper = """<div id="ipython-notebook">
             <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
-        </div>""".format(interact_link=INTERACT_LINK,
-                         html=html)        
-		
+        </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
+                         html=html)
+  		
         # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
 
