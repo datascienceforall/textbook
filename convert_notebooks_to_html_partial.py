@@ -46,7 +46,8 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
+#INTERACT_LINK = 'http://datahub.berkeley.edu/user-redirect/interact?repo=textbook&{paths}'
+INTERACT_LINK = 'https://labs.vocareum.com/main/main.php?m=editor&nav=1&asnid=22925&stepid=22926'
 
 # The prefix for each notebook + its dependencies
 PATH_PREFIX = 'path=notebooks/{}'
@@ -108,10 +109,9 @@ def convert_notebooks_to_html_partial(notebook_paths):
                        [filename]
         paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
 
-# MRC 01/19/2018: commented out the code below to hide the interact buttons
-# from the generated HTML.  Vocareum currently does not support producing
+# MRC 01/23/2018: Vocareum currently does not support producing a per-notebook
 # URLs with a standard base (i.e., INTERACT_LINK), so for now, we're
-# better off just hiding these and linking directly from our website.
+# linking to a single URL for all notebooks
 #
 #         with_wrapper = """<div id="ipython-notebook">
 #             <a class="interact-button" href="{interact_link}">Interact</a>
@@ -120,8 +120,10 @@ def convert_notebooks_to_html_partial(notebook_paths):
 #                          html=html)
 # MRC: replacing the above with this simpler code:
         with_wrapper = """<div id="ipython-notebook">
+            <a class="interact-button" href="{interact_link}">Interact</a>
             {html}
-        </div>""".format(html=html)
+        </div>""".format(interact_link=INTERACT_LINK,
+                         html=html)        
 		
         # Remove newlines before closing div tags
         final_output = CLOSING_DIV_REGEX.sub('</div>', with_wrapper)
