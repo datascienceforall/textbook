@@ -1,6 +1,7 @@
 # DO NOT IGNORE the next two directories.
 # It's tempting, but it will break Gitbook, which assumes that anything
 # in .gitignore should not become part of the book output.
+# See https://github.com/GitbookIO/gitbook/issues/931
 # notebooks-html/
 # notebooks-images/
 
