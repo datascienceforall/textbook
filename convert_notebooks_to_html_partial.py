@@ -133,6 +133,7 @@ def convert_notebooks_to_html_partial(notebook_paths):
             outfile.write(final_output)
 
         # Write out images
+        os.makedirs(NOTEBOOK_IMAGE_DIR, exist_ok=True)
         for relative_path, image_data in resources['outputs'].items():
             image_name = relative_path.split('/')[-1]
             final_image_path = '{}/{}'.format(NOTEBOOK_IMAGE_DIR, image_name)
