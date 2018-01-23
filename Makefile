@@ -12,6 +12,10 @@ help:
 	@echo "  build         to build locally."
 	@echo "  serve         to serve locally."
 	@echo "  deploy        to deploy the book to the course website."
+	@echo "  clean         to remove all generated files."
+
+clean:
+	rm -rf _book notebooks-html notebooks-images
 
 install:
 	gitbook install
@@ -24,7 +28,7 @@ notebooks:
 	python add_section_numbers_to_book.py
 
 	@echo ""
-	@echo "${BLUE}    Done, output is in notebooks-html${NOCOLOR}"
+	@echo "${BLUE}    Done, output is in notebooks-html and notebooks-images${NOCOLOR}"
 
 build: notebooks
 	gitbook build

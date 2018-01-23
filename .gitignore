@@ -1,6 +1,8 @@
-# Generated HTML
-notebooks-html/
-notebooks-images/
+# DO NOT IGNORE the next two directories.
+# It's tempting, but it will break Gitbook, which assumes that anything
+# in .gitignore should not become part of the book output.
+# notebooks-html/
+# notebooks-images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
