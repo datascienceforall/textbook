@@ -74,3 +74,14 @@ Also merge your feature branch into the cornell branch, using the instructions a
 * Do not merge your feature into the ucb branch.  Remember, that branch tracks what's in their repo:  it's up to them to accept your pull request into data-8/textbook, after which you can pull from it into the ucb branch.
 * If you never needed to push your feature branch (i.e., you merged directly to cornell following the instructions above), it is safe to delete your local branch now or later.  But it's not necessary.  
 * Run `git checkout cornell` then `git branch -d name`, where `name` is the name of your local feature branch.  Since your commits were merged into the cornell branch, they will stay there even after the feature branch is deleted.
+
+How to push to Vocareum
+-----------------------
+
+To update textbook or lecture demo
+* open assignment for textbook or for lecture demo, respectively
+* click "configure workspace"
+  -- ensure standard view, if necessary
+* all code lives in the StarterCode folder; upload all files there (data + ipynb; hierarchy is flat)
+* click "Update" -> "Replace existing content" (wipes out changes students have made)
+* students click "Action" -> "Reset Assignment" to get the new version (otherwise they get a 404)
