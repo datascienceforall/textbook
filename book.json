@@ -1,6 +1,6 @@
 {
     "gitbook": "3.x.x",
-    "plugins": [ "mathjax" ],
+    "plugins": [ {"name": "mathjax", "version": "git+https://github.com/datascienceforall/plugin-mathjax.git#1.1.2-fix-cdn"} ],
     "links": {
         "sidebar": {
             "Data Science For All Course Website": "http://www.cs.cornell.edu/courses/cs1380/2018sp/"
