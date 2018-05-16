@@ -46,10 +46,10 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'https://labs.vocareum.com/main/main.php?m=editor&nav=1&asnid=22925&stepid=22926&{paths}'
+INTERACT_LINK = 'https://github.com/datascienceforall/dsfa-2018sp-draft/blob/master/textbook/notebooks/{paths}'
 
 # The prefix for each notebook + its dependencies
-PATH_PREFIX = 'path=notebooks/{}'
+#PATH_PREFIX = 'path=notebooks/{}'
 
 # The regex used to find file dependencies for notebooks. I could have used
 # triple quotes here but it messes up Python syntax highlighting :(
@@ -109,12 +109,18 @@ def convert_notebooks_to_html_partial(notebook_paths):
 #         dependencies = [match.group('dataset') for match in matches] + \
 #                        [filename]
 #        paths = '&'.join([PATH_PREFIX.format(dep) for dep in dependencies])
-        paths = '&notebook=' + filename  #MRC: simplified from above for Vocareum 
-
+# MRC 1/24/18:  Instead, we just do the following:
+#        paths = '&notebook=' + filename  
+#        INTERACT_LABEL = 'Interact'
+# MRC 5/16/18:  For the archival repo, we just link directly to the notebook
+        paths = filename
+        INTERACT_LABEL = 'View Notebook'
+# END changes
         with_wrapper = """<div id="ipython-notebook">
-            <a class="interact-button" href="{interact_link}">Interact</a>
+            <a class="interact-button" href="{interact_link}">{interact_label}</a>
             {html}
         </div>""".format(interact_link=INTERACT_LINK.format(paths=paths),
+                         interact_label=INTERACT_LABEL,
                          html=html)
   		
         # Remove newlines before closing div tags
