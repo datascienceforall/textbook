@@ -46,7 +46,7 @@ NOTEBOOK_IMAGE_DIR = 'notebooks-images'
 
 # The prefix for the interact button links. The path format string gets filled
 # in with the notebook as well as any datasets the notebook requires.
-INTERACT_LINK = 'https://github.com/datascienceforall/dsfa-2018sp-draft/blob/master/textbook/notebooks/{paths}'
+INTERACT_LINK = 'https://github.com/datascienceforall/dsfa-2018sp-public/blob/master/textbook/notebooks/{paths}'
 
 # The prefix for each notebook + its dependencies
 #PATH_PREFIX = 'path=notebooks/{}'
